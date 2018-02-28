@@ -1,0 +1,10 @@
+---
+- hosts: all
+  connection: local
+  become: true
+
+  tasks:
+  - import_role:
+      name: additional_packages
+
+
