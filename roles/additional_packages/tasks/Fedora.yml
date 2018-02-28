@@ -5,3 +5,28 @@
     state: present
   with_items: "{{ additional_groups }}"
 
+- name: Enable RPM fusion repo
+  shell: |
+    rpm -ivh https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    rpm -ivh https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+  args:
+    executable: /bin/bash
+    creates: /etc/yum.repos.d/rpmfusion-free.repo
+
+- name: Install Media Codecs and VLC
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gstreamer-plugins-base 
+    - gstreamer1-plugins-base 
+    - gstreamer-plugins-bad 
+    - gstreamer-plugins-ugly 
+    - gstreamer1-plugins-ugly 
+    - gstreamer-plugins-good-extras 
+    - gstreamer1-plugins-good-extras 
+    - gstreamer1-plugins-bad-freeworld 
+    - ffmpeg 
+    - gstreamer-ffmpeg
+    - vlc
+
