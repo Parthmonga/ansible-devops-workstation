@@ -10,5 +10,5 @@
 ansible-galaxy install -r ./requirements.yml
 
 # Execute the playbook
-ansible-playbook ./main.yml
+ansible-playbook ./main.yml --ask-become-pass
 
