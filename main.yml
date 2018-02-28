@@ -20,4 +20,14 @@
   tasks:
   - import_role:
       name: additional_packages
+  - import_role:
+      name: brentwg.packer
+    vars:
+      packer_version: "1.2.0"
+      packer_arch: "amd64"
+  - import_role:
+      name: brentwg.terraform
+    vars:
+      terraform_version: "0.11.3"
+      terraform_arch: "amd64"
 
