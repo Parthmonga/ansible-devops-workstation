@@ -1,4 +1,4 @@
-roles/brentwg-*
+roles/brentwg.*
 *.swp
 *.rnd
 *.retry
