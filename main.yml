@@ -5,12 +5,12 @@
 
 
   pre_tasks:
-  - name: Ensure sshd is installed
+  - name: Ensure sshd is installed (ALL)
     package:
       name: openssh-server
       state: present
 
-  - name: Ensure sshd is running
+  - name: Ensure sshd is running (ALL)
     service:
       name: sshd
       state: started
@@ -20,14 +20,31 @@
   tasks:
   - import_role:
       name: additional_packages
+
   - import_role:
       name: brentwg.packer
     vars:
       packer_version: "1.2.0"
       packer_arch: "amd64"
+
   - import_role:
       name: brentwg.terraform
     vars:
       terraform_version: "0.11.3"
       terraform_arch: "amd64"
+
+  - name: Enable NOPASSWD for wheel group (RHEL)
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^%wheel\s'
+      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    when: ansible_os_family == 'RedHat'
+
+  - name: Disable SELinux (RHEL)
+    lineinfile:
+      path: /etc/selinux/config
+      state: present
+      regexp: '^SELINUX='
+      line: 'SELINUX=disabled'
 
