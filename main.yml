@@ -3,8 +3,21 @@
   connection: local
   become: true
 
+
+  pre_tasks:
+  - name: Ensure sshd is installed
+    package:
+      name: openssh-server
+      state: present
+
+  - name: Ensure sshd is running
+    service:
+      name: sshd
+      state: started
+      enabled: yes
+
+
   tasks:
   - import_role:
       name: additional_packages
-
 
