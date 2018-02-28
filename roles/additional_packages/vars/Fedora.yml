@@ -3,6 +3,8 @@ additional_packages:
   - vim-enhanced
   - gnome-tweak-tool
   - libselinux-python
+  - pass
+  - gnupg
 
 additional_groups:
   - "Development Tools"
