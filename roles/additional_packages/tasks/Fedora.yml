@@ -1,19 +1,19 @@
 ---
-- name: Install additional group packages
+- name: Install additional group packages (Fedora)
   dnf:
     name: "@{{ item }}"
     state: present
   with_items: "{{ additional_groups }}"
 
-- name: Enable RPM fusion repo
-  shell: |
-    rpm -ivh https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
-    rpm -ivh https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
-  args:
-    executable: /bin/bash
-    creates: /etc/yum.repos.d/rpmfusion-free.repo
+- name: Install RPM Fusion Repos (Fedora)
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
 
-- name: Install Media Codecs and VLC
+- name: Install Media Codecs and VLC (Fedora)
   dnf:
     name: "{{ item }}"
     state: present
