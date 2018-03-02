@@ -62,3 +62,7 @@
 
   - import_role:
       name: brentwg.visual-studio-code
+
+  - import_role:
+      name: brentwg.google-chrome
+
