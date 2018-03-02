@@ -48,3 +48,6 @@
       regexp: '^SELINUX='
       line: 'SELINUX=disabled'
 
+  - import_role:
+      name: brentwg.visual-studio-code
+
