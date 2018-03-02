@@ -18,6 +18,33 @@
 
 
   tasks:
+  - name: Enable NOPASSWD for wheel group (RHEL)
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^%wheel\s'
+      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    when: ansible_os_family == 'RedHat'
+
+  - name: Disable SELinux (RHEL)
+    lineinfile:
+      path: /etc/selinux/config
+      state: present
+      regexp: '^SELINUX='
+      line: 'SELINUX=disabled'
+    when: ansible_os_family == 'RedHat'
+
+  - name: Modify .bashrc file (Fedora)
+    blockinfile:
+      path: "~/.bashrc"
+      state: present
+      insertafter: "# User specific aliases and functions"
+      block: |
+        alias update='sudo dnf update'
+        alias trimssd='sudo fstrim -av'
+    when: ansible_os_family == 'RedHat' and ansible_distribution == "Fedora"
+    become_user: brentwg
+    
   - import_role:
       name: additional_packages
 
@@ -33,21 +60,5 @@
       terraform_version: "0.11.3"
       terraform_arch: "amd64"
 
-  - name: Enable NOPASSWD for wheel group (RHEL)
-    lineinfile:
-      path: /etc/sudoers
-      state: present
-      regexp: '^%wheel\s'
-      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-    when: ansible_os_family == 'RedHat'
-
-  - name: Disable SELinux (RHEL)
-    lineinfile:
-      path: /etc/selinux/config
-      state: present
-      regexp: '^SELINUX='
-      line: 'SELINUX=disabled'
-
   - import_role:
       name: brentwg.visual-studio-code
-
