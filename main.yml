@@ -66,3 +66,5 @@
   - import_role:
       name: brentwg.google-chrome
 
+  - import_role:
+      name: brentwg.docker

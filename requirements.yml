@@ -3,3 +3,4 @@
 - name: brentwg.terraform
 - name: brentwg.visual-studio-code
 - name: brentwg.google-chrome
+- name: brentwg.docker

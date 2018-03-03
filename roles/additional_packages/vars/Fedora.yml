@@ -5,6 +5,7 @@ additional_packages:
   - libselinux-python
   - pass
   - gnupg
+  - curl
 
 additional_groups:
   - "Development Tools"
