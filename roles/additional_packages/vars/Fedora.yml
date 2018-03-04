@@ -6,6 +6,8 @@ additional_packages:
   - pass
   - gnupg
   - curl
+  - htop
+  - ntop
 
 additional_groups:
   - "Development Tools"
