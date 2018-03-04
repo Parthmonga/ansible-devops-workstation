@@ -9,6 +9,12 @@
     package:
       name: openssh-server
       state: present
+      
+  - name: Ensure libselinux-python is installed (RedHat)
+    package:
+      name: libselinux-python
+      state: present
+    when: ansible_os_family == 'RedHat'
 
   - name: Ensure sshd is running (ALL)
     service:
