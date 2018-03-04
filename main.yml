@@ -16,6 +16,18 @@
       state: started
       enabled: yes
 
+  - name: Ensure that the brentwg account was created (RedHat)
+    user:
+      name: brentwg
+      comment: "Brent G."
+      state: present
+      group: brentwg
+      groups: wheel
+      append: yes
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+
 
   tasks:
   - name: Enable NOPASSWD for wheel group (RHEL)
@@ -68,3 +80,10 @@
 
   - import_role:
       name: brentwg.docker
+
+  - name: Add brentwg to the docker group
+    user:
+      name: brentwg
+      groups: docker
+      append: yes
+ 
