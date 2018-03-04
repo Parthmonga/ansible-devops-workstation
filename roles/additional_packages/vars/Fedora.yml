@@ -10,7 +10,6 @@ additional_packages:
   - ntop
   - yum-utils
   - gparted
-  - libselinux-python
 
 additional_groups:
   - "Development Tools"
