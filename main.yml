@@ -59,6 +59,8 @@
     
   - import_role:
       name: additional_packages
+    vars:
+      install_all_package_updates: true
 
   - import_role:
       name: brentwg.packer

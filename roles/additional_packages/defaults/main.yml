@@ -1,3 +1,5 @@
 ---
+install_all_package_updates: true
+
 additional_packages: []
 additional_groups: []

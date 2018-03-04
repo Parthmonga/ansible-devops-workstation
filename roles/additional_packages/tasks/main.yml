@@ -10,6 +10,12 @@
   when: ansible_distribution == 'Fedora'
 
 # Setup/install tasks
+- name: Install all software package updates
+  package:
+    name: "*"
+    state: "latest"
+  when: install_all_package_updates
+
 - name: Install additional packages
   package:
     name: "{{ item }}"
