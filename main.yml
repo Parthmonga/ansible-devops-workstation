@@ -35,12 +35,7 @@
       ssh_key_file: .ssh/id_rsa
 
 
-  tasks:
-  - import_role:
-      name: additional_packages
-    vars:
-      install_all_package_updates: true
-      
+  tasks:    
   - name: Enable NOPASSWD for wheel group (RHEL)
     lineinfile:
       path: /etc/sudoers
@@ -67,6 +62,11 @@
         alias trimssd='sudo fstrim -av'
     when: ansible_os_family == 'RedHat' and ansible_distribution == "Fedora"
     become_user: brentwg
+    
+  - import_role:
+      name: additional_packages
+    vars:
+      install_all_package_updates: false
 
   - import_role:
       name: brentwg.packer
