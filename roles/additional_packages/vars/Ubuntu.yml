@@ -1,0 +1,14 @@
+---
+additional_packages:
+  - vim
+  - pass
+  - gnupg
+  - curl
+  - htop
+  - ntop
+  - build-essential
+  - gparted
+  - bridge-utils
+  - qemu-kvm 
+  - libvirt-bin 
+  - virt-manager
